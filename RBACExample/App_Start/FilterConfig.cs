@@ -1,4 +1,4 @@
-﻿using RBACExample.RBAC;
+﻿using RBACExample.Attribute;
 using System.Web.Mvc;
 
 namespace RBACExample.App_Start

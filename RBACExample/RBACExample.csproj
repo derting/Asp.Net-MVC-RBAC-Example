@@ -97,6 +97,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attribute\AuthBreadcrumbAttribute.cs" />
+    <Compile Include="Attribute\MvcAuthorizeAttribute.cs" />
     <Compile Include="Common\BreadcurmbHelper.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -106,7 +107,6 @@
     </Compile>
     <Compile Include="Models\ControllerAction.cs" />
     <Compile Include="RBAC\DelegateRoleProvider.cs" />
-    <Compile Include="RBAC\MvcAuthorizeAttribute.cs" />
     <Compile Include="RBAC\RBACModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RBAC\RBACContext.cs" />

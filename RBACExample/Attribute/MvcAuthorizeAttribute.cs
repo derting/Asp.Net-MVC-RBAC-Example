@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 
-namespace RBACExample.RBAC
+namespace RBACExample.Attribute
 {
     public class MvcAuthorizeAttribute : AuthorizeAttribute
     {
