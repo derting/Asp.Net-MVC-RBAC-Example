@@ -15,8 +15,6 @@ namespace RBACExample.RBAC
         public static void AddRolePermission()
         {
             var role = _allRolePermissions.First(y => y.RoleName == "Role1");
-            
-
             var _role1 = new List<RBACPermission>();
             _role1.Add(new RBACPermission() { PermissionName = "admin" });
             _role1.Add(new RBACPermission() { PermissionName = "general" });

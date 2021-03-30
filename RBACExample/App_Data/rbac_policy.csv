@@ -1,0 +1,58 @@
+﻿<!--
+
+角色有：Role1, Role2
+權限有：Admin, General, Owner
+
+角色有權限：
+  Role1{Admin}
+  Role2{General}
+  Role3{General,Owner}
+
+管制頁與權限：
+  Home/Account    {admin, general}
+  Home/General    {admin, general}
+  Home/Admin      {admin}
+  Manage/Index    {admin, owner}
+
+-->
+
+p, admin, home, account, read, allow
+p, admin, home, general, read, allow
+p, admin, home, admin, read, allow
+p, admin, manage, index, read, allow
+
+p, general, home, account, read, allow
+p, general, home, general, read, allow
+p, general, home, admin, read, deny
+p, general, manage, index, read, deny
+
+p, owner, home, account, read, deny
+p, owner, home, general, read, deny
+p, owner, home, admin, read, deny
+p, owner, manage, index, read, allow
+
+g, role1, admin, home
+g, role1, admin, manage
+
+g, role2, general, home
+g, role2, general, manage
+
+g, role3, general, home
+g, role3, general, manage
+g, role3, owner, home
+g, role3, owner, manage
+
+<!--
+
+範例：
+
+p, admin, controller1, action1, read, allow
+p, admin, controller1, action2, read, allow
+
+p, admin, controller2, action1, read, allow
+p, admin, controller2, action2, read, allow
+
+g, alice, admin, controller1
+g, bob, admin, controller2
+
+-->
