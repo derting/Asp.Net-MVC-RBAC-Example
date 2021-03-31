@@ -9,8 +9,8 @@ namespace RBACExample.App_Start
         {
             filters.Add(new HandleErrorAttribute());
 
-            MvcAuthorizeAttribute.ActionRoleMappingInitial();
-            filters.Add(new MvcAuthorizeAttribute());
+            //MvcAuthorizeAttribute.ActionRoleMappingInitial();
+            //filters.Add(new MvcAuthorizeAttribute());
         }
     }
 }

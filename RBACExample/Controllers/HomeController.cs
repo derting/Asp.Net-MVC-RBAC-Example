@@ -1,19 +1,15 @@
-﻿using NetCasbin;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RBACExample.Attribute;
 using RBACExample.Models;
 using RBACExample.RBAC;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
 namespace RBACExample.Controllers
 {
-    [AuthBreadcrumb("預設目錄")]
+    [AuthBreadcrumb("預設目錄", IsController: true)]
     public class HomeController : Controller
     {
         public ActionResult Login(string returnUrl, string role, string userName)
@@ -97,7 +93,7 @@ namespace RBACExample.Controllers
         [AuthBreadcrumb("帳戶資訊")]
         public ActionResult Account()
         {
-            RBAC.RBACContext.AddRolePermission();
+            //RBAC.RBACContext.AddRolePermission();
             return Content(string.Format("user is IsAuthenticated:{0}", User.Identity.IsAuthenticated));
         }
 
