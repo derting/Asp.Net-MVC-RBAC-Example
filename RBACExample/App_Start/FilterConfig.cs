@@ -8,9 +8,6 @@ namespace RBACExample.App_Start
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-
-            //MvcAuthorizeAttribute.ActionRoleMappingInitial();
-            //filters.Add(new MvcAuthorizeAttribute());
         }
     }
 }

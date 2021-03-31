@@ -10,7 +10,6 @@ namespace RBACExample.Controllers
         [AuthBreadcrumb("管理目錄首頁")]
         public ActionResult Index()
         {
-
             var ctrlActions = BreadcurmbHelper.GetAll();
 
             return View(ctrlActions);

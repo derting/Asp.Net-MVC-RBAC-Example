@@ -1,14 +1,15 @@
 ﻿<!--
 
-角色有：Role1, Role2
-權限有：Admin, General, Owner
+※ 請用 Lower Case 撰寫每一條 Policy
 
-角色有權限：
+如下範例：
+→角色有：Role1, Role2, Guest
+→權限有：Admin, General, Owner
+→角色有權限：
   Role1{Admin}
   Role2{General}
   Role3{General,Owner}
-
-管制頁與權限：
+→管制頁與權限：
   Home/Account    {admin, general}
   Home/General    {admin, general}
   Home/Admin      {admin}
@@ -42,9 +43,11 @@ g, role3, general, manage
 g, role3, owner, home
 g, role3, owner, manage
 
+g, guest, general, home
+
 <!--
 
-範例：
+其他範例：
 
 p, admin, controller1, action1, read, allow
 p, admin, controller1, action2, read, allow

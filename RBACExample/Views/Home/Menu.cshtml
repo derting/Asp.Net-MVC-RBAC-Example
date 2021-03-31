@@ -1,7 +1,5 @@
-﻿
-@{
+﻿@{
     Layout = null;
-
 
     var userData = (User as RBACExample.RBAC.RBACPrincipal);
 }
@@ -15,6 +13,12 @@
 </head>
 <body>
 
+    <style>
+        div#divmenu a {
+            display: block;
+        }
+    </style>
+
     <h3>認證: @User.Identity.IsAuthenticated</h3>
 
     @if (User.Identity.IsAuthenticated)
@@ -22,12 +26,18 @@
         <h3>Name: @User.Identity.Name</h3>
 
         <h3>Role: @userData.Role</h3>
+
+        <div id="divmenu">
+            @Html.DynamicMenu(userData.Role)
+        </div>
+    }
+    else {     
+        <div id="divmenu">
+            @Html.DynamicMenu()
+        </div>
     }
 
 
-    <div>
 
-
-    </div>
 </body>
 </html>
