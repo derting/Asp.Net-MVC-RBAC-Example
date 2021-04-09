@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    var Permisiions = ViewBag.Permisiions as List<RBACExample.Models.ControllerActionPermission>;
 }
 
 <!DOCTYPE html>
@@ -10,11 +11,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+
     <table class="table">
         <tr>
             <th>
@@ -29,9 +30,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.ActionLabel)
             </th>
-            <th></th>
+
+            @foreach (var item in ViewBag.Roles as List<string>)
+            {
+            <th>
+                <strong>@item</strong>
+            </th>    
+            }
         </tr>
     
+        
     @foreach (var item in Model) {
         <tr>
             <td>
@@ -46,14 +54,55 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ActionLabel)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+
+            @foreach (var role in ViewBag.Roles as List<string>)
+            {
+            <td data-role="@role" data-ctrl="@item.Controller" data-act="@item.Action">
+                  @if (Permisiions.Any(y => y.Permission == role && y.Controller == item.Controller && y.Action == item.Action && y.IsAllow))
+                  {
+                    <input type="checkbox" id="@Html.Raw(string.Format("{0}_{1}_{2}", role, item.Controller, item.Action))" checked="checked" onclick="chToggle(this)">
+                  }
+                  else
+                  { 
+                    <input type="checkbox" id="@Html.Raw(string.Format("{0}_{1}_{2}", role, item.Controller, item.Action))" onclick="chToggle(this)">
+                  }
+            </td>    
+            }
         </tr>
     }
-    
     </table>
+
+    <script type="text/javascript">
+
+        function chToggle(obj) {
+            var chToggleResult = $(obj).prop("checked");
+            var attr = $(obj).attr('id').split('_')
+            role = attr[0];
+            ctrl = attr[1].toLocaleLowerCase().replace('controller', '');
+            act = attr[2].toLocaleLowerCase();
+
+            if (chToggleResult == true) {
+                Add(role, ctrl, act);
+            } else {
+                Remove(role, ctrl, act)
+            }
+        }
+
+        function Add(role, ctrl, act) {
+
+            $.get('/CasbinTest/AddPolicy?role=' + role + '&ctrl=' + ctrl + '&act=' + act + '&isAllow=true',
+                function () {
+
+                });
+        }
+
+        function Remove(role, ctrl, act) {
+
+            $.get('/CasbinTest/RemovePolicy?policy=p, ' + role + ', ' + ctrl + ', ' + act + ', read, allow',
+                function () {
+
+                });
+        }
+    </script>
 </body>
 </html>

@@ -12,8 +12,8 @@ namespace RBACExample.RBAC
 {
     public static class CasbinHelper
     {
-        internal static readonly string _reacConfig = ReadTestFile("rbac_model.conf");
-        internal static readonly string _reacCsv = ReadTestFile("rbac_policy.csv");
+        internal static string _reacConfig = ReadTestFile("rbac_model.conf");
+        internal static string _reacCsv = ReadTestFile("rbac_policy.csv");
 
         public static Model GetRBACModel()
         {
@@ -30,6 +30,17 @@ namespace RBACExample.RBAC
             return LoadModelFromMemory(GetNewTestModel(modelText), policyText);
         }
 
+        public static string GetTestFile(string fileName)
+        {
+            return Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "App_Data", fileName);
+        }
+
+        public static void ForceLoadFile()
+        {
+            _reacConfig = ReadTestFile("rbac_model.conf");
+            _reacCsv = ReadTestFile("rbac_policy.csv");
+        }
+
         private static Model LoadModelFromMemory(Model model, string policy)
         {
             model.ClearPolicy();
@@ -40,11 +51,6 @@ namespace RBACExample.RBAC
             }
             model.RefreshPolicyStringSet();
             return model;
-        }
-
-        public static string GetTestFile(string fileName)
-        {
-            return Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "App_Data", fileName);
         }
 
         private static string ReadTestFile(string fileName)
